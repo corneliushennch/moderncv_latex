@@ -6,7 +6,7 @@
 % available at http://www.latex-project.org/lppl/.
 
 
-\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[10pt,a4paper,roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes
 \moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
@@ -20,13 +20,13 @@
 
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
-%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+\setlength{\hintscolumnwidth}{100pt}                % if you want to change the width of the column with the dates
 %\setlength{\makecvheadnamewidth}{10cm}            % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
 % personal data
-\name{John}{Doe}
-\title{Résumé title}                               % optional, remove / comment the line if not wanted
-\born{4 July 1776}                                 % optional, remove / comment the line if not wanted
+\name{Cornelius}{Hennch}
+%\title{Résumé title}                               % optional, remove / comment the line if not wanted
+\born{10.07.1992}                                 % optional, remove / comment the line if not wanted
 \address{street and number}{postcode city}{country}% optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
 \phone[mobile]{+1~(234)~567~890}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 \phone[fixed]{+2~(345)~678~901}
@@ -54,8 +54,8 @@
 
 
 \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
-\photo[64pt][0.4pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
-\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+\photo[100pt][0pt]{picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
 
 % bibliography adjustments (only useful if you make citations in your resume, or print a list of publications using BibTeX)
 %   to show numerical labels in the bibliography (default is to show no labels)
@@ -121,9 +121,9 @@ Detailed achievements:
 
 \section{Skill matrix}
 \cvitem{Skill matrix}{Alternatively, provide a skill matrix to show off your skills}
-%% Skill matrix as an alternative to rate one's skills, computer or other. 
+%% Skill matrix as an alternative to rate one's skills, computer or other.
 
-%% Adjusts width of skill matrix columns. 
+%% Adjusts width of skill matrix columns.
 %% Usage \setcvskillcolumns[<width>][<factor>][<exp_width>]
 %% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
 %% Examples:
@@ -162,12 +162,12 @@ Detailed achievements:
 %% Adjust head of the skill matrix for other languages
 % \cvskillhead[0.25em][Level][F\"ahigkeit][Jahre][Bemerkung]
 
-%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}% 
+%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
 %% Example usages:
 \cvskillentry*{Language:}{3}{Python}{2}{I'm so experienced in Python and have realised a million projects. At least.}
 \cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
 \cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
-\cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional 
+\cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional
 \cvskillentry*[1em]{Methods}{4}{SCRUM}{8}{SCRUM master for 5 years}
 %% \cvskill{<0-5>} command
 % \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed by the \textbackslash{cvskill} command, e.g. \cvskill{2}}
@@ -211,7 +211,7 @@ Detailed achievements:
 %\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
 
 \clearpage
-%-----       letter       ---------------------------------------------------------
+% -----       letter       ---------------------------------------------------------
 % recipient data
 \recipient{Company Recruitment team}{Company, Inc.\\123 somestreet\\some city}
 \date{January 01, 1984}
