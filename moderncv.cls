@@ -96,7 +96,7 @@
   \fi
 \fi
 
-% do not use inputenc and do not automatically load lmodern to avoid problems with German 
+% do not use inputenc and do not automatically load lmodern to avoid problems with German
 % charactes, see
 % https://tex.stackexchange.com/questions/496630/lualatex-problems-with-german-characters
 \ifxetexorluatex
@@ -117,7 +117,7 @@
 %     %additions for utf8
 %     \input{ix-utf8enc.dfu}
     \RequirePackage[T1]{fontenc}
-    % loading lmodern can cause issues with certain special characters. avoid. 
+    % loading lmodern can cause issues with certain special characters. avoid.
 %     \IfFileExists{lmodern.sty}%
 %         {\RequirePackage{lmodern}}%
 %         {}
@@ -274,8 +274,8 @@
 
 % http://latex.org/forum/viewtopic.php?t=12239
 \def\SplitMyMacro#1/#2{#2}
-    
-    
+
+
 % adds a social link to one's personal information (optional)
 % usage: \social[<optional type>][<optional url>]{<account name>}
 % where <optional type> should be either "linkedin", "xing", "twitter", "github", "gitlab", "bitbucket" or "skype"
