@@ -4,7 +4,7 @@
 \documentclass[11pt, a4paper, roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes  -------------------------------------------------------------------------------------
-\moderncvstyle{banking} % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvstyle{casual} % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 \moderncvcolor{blue}  % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 %\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
@@ -19,6 +19,14 @@
 % additional packages  ------------------------------------------------------------------------------------
 \usepackage{fontawesome5}
 \usepackage[ngerman]{babel}
+\usepackage{lastpage}
+
+% add page numbers
+\rfoot{\addressfont\itshape\textcolor{gray}{\thepage}}
+
+% no hyphenation?
+%\hyphenchar\font=-1
+%\sloppy
 
 % adjust the page margins  ------------------------------------------------------------------------------
 \setlength{\footskip}{40pt}
@@ -60,12 +68,12 @@
 % \title{Lebenslauf}                               % optional, remove / comment the line if not wanted
 % \born{10.07.1992}                                 % optional, remove / comment the line if not wanted
 % optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
-\address{Heinz-Bartsch-Straße 14}{10407 Berlin}{}
-\phone[mobile]{+49 15775356446}                  % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+% \address{Heinz-Bartsch-Straße 14}{10407 Berlin}{}
+% \phone[fixed]{ +49 15775356446}                  % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 %\phone[fixed]{+2~(345)~678~901}
 %\phone[fax]{+3~(456)~789~012}
-\email{cornelius.hennch@charite.de}
-\homepage{www.hennch.co}                       % optional, remove / comment the line if not wanted
+\email{ cornelius.hennch[at]charite.de}
+\homepage{ www.hennch.co}                       % optional, remove / comment the line if not wanted
 
 % Social icons
 % \social[linkedin]{john.doe}                        % optional, remove / comment the line if not wanted
@@ -101,13 +109,7 @@
 
 %-----       resume       ---------------------------------------------------------
 \makecvtitle
-
-\section{Persönliche Daten}
-    \cvitem{Adresse}{Heinz-Bartsch-Straße 14, 10407 Berlin}
-    \cvitem{Email}{cornelius.hennch@charite.de}
-    \cvitem{Telefon}{+4915775356446}
-    \cvitem{Geburtsdatum}{10.07.1992}
-    \cvitem{Geburtsort}{Heidelberg}
+\vspace*{-10mm}
 
 \section{Ausbildung / Akademischer Werdegang}
     \cventry{04/2013 -- 11/2020}{Studium der Humanmedizin}{Charité -- Universitätsmedizin Berlin}{}{}{Staatsexamen: Gesamtnote 1,0}
@@ -119,14 +121,14 @@
 \cventry{seit 09/2017}{Strukturiertes Promotionsstudium}{Berlin School of Integrative Oncology (BSIO)}{}{}{MD (Dr.med.) track}
 \cvitem{Titel}{Identifikation und funktionelle Validierung neuer genetischer Mutationen im primär mediastinalen B-Zell Lymphom (PMBCL)}
 \cvitem{Betreuer}{Prof. Dr. Frederik Damm, Dr. med. Daniel Nörenberg}
-\cvitem{Abteilung}{Medizinische Klinik m.S. Hämatologie, Onkologie und Tumorimmunologie, Campus Virchow Klinikum der Charité -- Universitätsmedizin Berlin}
+\cvitem{Abteilung}{Medizinische Klinik m.S. Hämatologie, Onkologie und Tumorimmunologie, Campus\newline{} Virchow Klinikum der Charité -- Universitätsmedizin Berlin}
 
 % \newpage
 
 \section{Klinische Praktika}
 
 \subsection{Praktisches Jahr}
-\cventry{06/2020 -- 10/2020}{PJ-Tertial Innere Medizin}{Campus Virchow Klinikum der Charité}{}{}{Medizinische Klinik m.S. Hämatologie, Onkologie und Tumorimmunologie, Station 51B und 51C (Schwerpunkt Leukämien und Lymphomerkrankungen)}
+\cventry{06/2020 -- 10/2020}{PJ-Tertial Innere Medizin}{Campus Virchow Klinikum der Charité}{}{}{Medizinische Klinik m.S. Hämatologie, Onkologie und Tumorimmunologie, Station 51B und 51C, Schwerpunkt Leukämien und Lymphomerkrankungen}
 \cventry{03/2020 -- 06/2020}{PJ-Tertial Chirurgie}{Vivantes Klinikum am Friedrichshain}{Berlin}{}{Klinik für Allgemein- und Viszeralchirurgie}
 \cventry{11/2019 -- 03/2020}{PJ-Tertial Psychiatrie}{Zentrum für Psychiatrie Emmendingen (Lehrkrankenhaus der Albert-Ludwigs-Universität Freiburg)}{}{}{Klinik für Psychiatrie und Psychotherapie, Schwerpunkt psychotische Störungen}
 
@@ -139,7 +141,7 @@
 \begin{itemize}
   \item[$-$] \textbf{Hôpital Cochin:} Interdisziplinäre Notaufname
   \item[$-$] \textbf{Hôpital St. Anne:} Psychiatrie und Neurologie
-  \item[$-$] \textbf{Hôpital Necker:} Hämatologie, Gynäkologie/Geburtshilfe, Infektiologie und pädiatrische Endokrinologie
+  \item[$-$] \textbf{Hôpital Necker:} Hämatologie, Gynäkologie/Geburtshilfe, Infektiologie und Pädiatrie
 \end{itemize}}
 \cventry{04/2016}{Department of Anaesthesiology}{Queen Mary Hospital, Lehrkrankenhaus der University of Hong Kong}{Hong Kong S.A.R.}{}{}
 \cventry{03/2016}{Department of Clinical Oncology}{Prince of Wales Hospital, Lehrkrankenhaus der Chinese University of Hong Kong}{Hong Kong S.A.R.}{}{}
@@ -291,7 +293,7 @@
 %\bibliographystylemisc{plain}
 %\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
 
-Berlin, \today\vspace{32pt}
+Berlin, \today\vspace*{3em}
 
 \textbf{Cornelius Hennch}
 
