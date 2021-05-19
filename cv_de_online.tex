@@ -4,7 +4,7 @@
 \documentclass[11pt, a4paper, roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes  -------------------------------------------------------------------------------------
-\moderncvstyle{casual} % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+\moderncvstyle[right]{casual} % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
 \moderncvcolor{blue}  % color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
 %\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 %\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
@@ -13,25 +13,28 @@
 %\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
 
 % custom font --------------------------------------------------------------------------------------------
-\usepackage[T1]{fontenc}
-\usepackage{ebgaramond}
+\usepackage{CormorantGaramond}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{ebgaramond}
 
 % additional packages  ------------------------------------------------------------------------------------
 \usepackage{fontawesome5}
 \usepackage[ngerman]{babel}
-\usepackage{lastpage}
+% \usepackage[absolute,overlay]{textpos} % for manual positioning of the photo
+%\usepackage{lastpage}
 
 % add page numbers
-\rfoot{\addressfont\itshape\textcolor{gray}{\thepage}}
+%\rfoot{\addressfont\itshape\textcolor{gray}{\thepage}}
 
 % no hyphenation?
 %\hyphenchar\font=-1
 %\sloppy
 
 % adjust the page margins  ------------------------------------------------------------------------------
-\setlength{\footskip}{40pt}
-\usepackage[left = 20mm, right = 20mm, top = 20mm, bottom = 25mm]{geometry}
-\setlength{\hintscolumnwidth}{85pt}      % if you want to change the width of the column with the dates
+\setlength{\footskip}{38pt}
+\usepackage[left = 25mm, right = 20mm, top = 20mm, bottom = 25mm]{geometry}
+\setlength{\hintscolumnwidth}{81pt}      % if you want to change the width of the column with the dates
 %\setlength{\makecvheadnamewidth}{10cm}   % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
 
 % define custom colors  ------------------------------------------------------------------------------
@@ -62,14 +65,86 @@
 
 % remove italic from recipient font
 \renewcommand*{\addressfont}{\small\mdseries}
+%
+% % place photo below line
+% \makeatletter
+% \renewcommand*{\makecvhead}{% TODO: use \@initializecommand, which requires modifying its definition to handle \par
+%   % recompute lengths (in case we are switching from letter to resume, or vice versa)
+%   \recomputecvlengths%
+%   % optional picture (pre-rendering)
+%   \@initializebox{\makecvheadpicturebox}%
+%   \savebox{\makecvheadpicturebox}{%
+%     \ifthenelse{\isundefined{\@photo}}%
+%       {}%
+%       {\setlength\fboxrule{\@photoframewidth}%
+%        \ifdim\@photoframewidth=0pt%
+%          \setlength{\fboxsep}{0pt}\fi%
+%        {\color{color1}\framebox{\includegraphics[width=\@photowidth]{\@photo}}}}}%
+%   % name (pre-rendering)
+%   \@initializelength{\makecvheadpicturewidth}%
+%   \settowidth{\makecvheadpicturewidth}{\usebox{\makecvheadpicturebox}}%
+%   \@initializebox{\makecvheadnamebox}%
+%   \savebox{\makecvheadnamebox}{%
+%     \parbox[b]{\textwidth-\makecvheadpicturewidth}{%
+%       \if@left\raggedright\fi%
+%       \if@right\raggedleft\fi%
+%       \namefont%
+%       \if@alternate% alternate design: first- and lastname in lowercase with no space in between (distinction is made by color difference)
+%         {\color{color2!50}\MakeLowercase\@firstname}{\color{color2}\MakeLowercase\@lastname}%
+%       \else% default design: first- and lastname as given with a space in between
+%         {\color{color2}\@firstname} {\color{color2}\@lastname}\fi}}%
+%   % rendering
+%   \if@left%
+%     \usebox{\makecvheadnamebox}
+%           % optional title
+%     \ifthenelse{\equal{\@title}{}}{}{%
+%     %\\[.1em]\null% \null is required as there is no box on the line after \\, so glue such as \hfill (and leaders) disappear; this is in contrast to after \par, where the next line starts with an indent box (even after \noindent)
+%     \if@right\hfill\fi%
+%     \if@alternate%
+%       \titlestyle{\MakeLowercase\@title}%
+%     \else%
+%       \hfill\titlestyle{\@title}\fi}\\[-.35em]%
+%     {\color{color2!50}\rule{\textwidth}{.25ex}\vspace*{.5em}}
+%     \null\hfill\usebox{\makecvheadpicturebox}\fi
+%   \if@right%
+%     \usebox{\makecvheadpicturebox}%
+%     \usebox{\makecvheadnamebox}\fi\\[-.35em]%
+%   %{\color{color2!50}\rule{\textwidth}{.25ex}}%
+%   % optional detailed information
+%   \if@details{%
+%     \\\null%
+%     \addressfont\color{color2}%
+%     \ifthenelse{\isundefined{\@addressstreet}}{}{\addtomakeheaddetails{\addresssymbol\@addressstreet}%
+%       \ifthenelse{\equal{\@addresscity}{}}{}{\addtomakeheaddetails[~--~]{\@addresscity}}% if \addresstreet is defined, \addresscity and \addresscountry will always be defined but could be empty
+%       \ifthenelse{\equal{\@addresscountry}{}}{}{\addtomakeheaddetails[~--~]{\@addresscountry}}%
+%         \flushmakeheaddetails\@firstmakeheaddetailselementtrue\\\null}%
+%     \ifthenelse{\isundefined{\@born}}{}{\addtomakeheaddetails{\bornsymbol\@born}}%
+%     \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+%       \addtomakeheaddetails{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
+%     \ifthenelse{\isundefined{\@email}}{}{\addtomakeheaddetails{\emailsymbol\emaillink{\@email}}}%
+%     \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol\httpslink{\@homepage}}}%
+%     \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+%       \addtomakeheaddetails{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+%     \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomakeheaddetails{\@extrainfo}}%
+%     \flushmakeheaddetails}\fi% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
+%   % optional quote
+%   \ifthenelse{\isundefined{\@quote}}%
+%     {}%
+%     {{\null\hfill%
+%       \begin{minipage}{\quotewidth}%
+%         \centering%
+%         \quotestyle{\@quote}%
+%       \end{minipage}\hfill\null\\[2.5em]}}%
+%   \par}
+% \makeatother
 
 % personal data ------------------------------------------------------------------------------------------
 \name{}{Cornelius Hennch}
-% \title{Lebenslauf}                               % optional, remove / comment the line if not wanted
+\title{Lebenslauf}                               % optional, remove / comment the line if not wanted
 % \born{10.07.1992}                                 % optional, remove / comment the line if not wanted
 % optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
-% \address{Heinz-Bartsch-Straße 14}{10407 Berlin}{}
-% \phone[fixed]{ +49 15775356446}                  % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+% \address{}{}{}
+% \phone[fixed]{}                  % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
 %\phone[fixed]{+2~(345)~678~901}
 %\phone[fax]{+3~(456)~789~012}
 \email{ cornelius.hennch[at]charite.de}
@@ -85,7 +160,7 @@
 % \extrainfo{additional information}                 % optional, remove / comment the line if not wanted
 
 % photo --------------------------------------------------------------------------------------------------
-\photo[85pt][0pt]{avatar.jpg}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+\photo[80pt][0pt]{avatar.jpg}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
 %\quote{Some quote}                                 % optional, remove / comment the line if not wanted
 
 % bibliography adjustments (only useful if you make citations in your resume, or print a list of publications using BibTeX)
@@ -109,76 +184,94 @@
 
 %-----       resume       ---------------------------------------------------------
 \makecvtitle
-\vspace*{-10mm}
+
+% move text up
+\vspace*{-20mm}
+% manually placed photo ----> not very elegant
+%  in cm:           (length from right, length from above)
+%\begin{textblock}{0}(10.5,2) % <=======================================
+%  \includegraphics[width=90pt]{avatar.jpg}\par
+%\end{textblock}
 
 \section{Ausbildung / Akademischer Werdegang}
     \cventry{04/2013 -- 11/2020}{Studium der Humanmedizin}{Charité -- Universitätsmedizin Berlin}{}{}{Staatsexamen: Gesamtnote 1,0}
-    \cventry{07/2014 -- 11/2020}{Stipendium}{Studienstiftung des deutschen Volkes}{}{}{}
-    \cventry{10/2016 -- 06/2017}{Auslandsstudium (Erasmus)}{Université Paris Descartes (Paris 5)}{Paris, Frankreich}{}{}
-    \cventry{09/2002 -- 06/2011}{Abitur (1,2)}{Robert-Bunsen-Gymnasium}{Heidelberg}{}{}
+    %\cventry{07/2014 -- 11/2020}{Stipendium}{Studienstiftung des deutschen Volkes}{}{}{}
+    \cvitem{07/2014 -- 11/2020}{\textbf{Stipendium} der Studienstiftung des deutschen Volkes}
+    \cventry{10/2016 -- 06/2017}{Auslandsstudium (Erasmus)}{Université Paris Descartes (Paris V)}{Frankreich}{}{}
+    \cventry{09/2002 -- 06/2011}{Abitur (Note 1,2)}{Robert-Bunsen-Gymnasium}{Heidelberg}{}{}
 
 \subsection{Promotion}
 \cventry{seit 09/2017}{Strukturiertes Promotionsstudium}{Berlin School of Integrative Oncology (BSIO)}{}{}{MD (Dr.med.) track}
 \cvitem{Titel}{Identifikation und funktionelle Validierung neuer genetischer Mutationen im primär mediastinalen B-Zell Lymphom (PMBCL)}
 \cvitem{Betreuer}{Prof. Dr. Frederik Damm, Dr. med. Daniel Nörenberg}
-\cvitem{Abteilung}{Medizinische Klinik m.S. Hämatologie, Onkologie und Tumorimmunologie, Campus\newline{} Virchow Klinikum der Charité -- Universitätsmedizin Berlin}
+\cvitem{Abteilung}{Medizinische Klinik m. S. Hämatologie, Onkologie und Tumorimmunologie, Campus\newline{} Virchow Klinikum der Charité -- Universitätsmedizin Berlin}
 
 % \newpage
 
 \section{Klinische Praktika}
 
 \subsection{Praktisches Jahr}
-\cventry{06/2020 -- 10/2020}{PJ-Tertial Innere Medizin}{Campus Virchow Klinikum der Charité}{}{}{Medizinische Klinik m.S. Hämatologie, Onkologie und Tumorimmunologie, Station 51B und 51C, Schwerpunkt Leukämien und Lymphomerkrankungen}
+\cventry{06/2020 -- 10/2020}{PJ-Tertial Innere Medizin}{Campus Virchow Klinikum der Charité}{}{}{Medizinische Klinik m. S. Hämatologie, Onkologie und Tumorimmunologie, Station 51B und 51C, Schwerpunkt Leukämien und Lymphomerkrankungen}
 \cventry{03/2020 -- 06/2020}{PJ-Tertial Chirurgie}{Vivantes Klinikum am Friedrichshain}{Berlin}{}{Klinik für Allgemein- und Viszeralchirurgie}
 \cventry{11/2019 -- 03/2020}{PJ-Tertial Psychiatrie}{Zentrum für Psychiatrie Emmendingen (Lehrkrankenhaus der Albert-Ludwigs-Universität Freiburg)}{}{}{Klinik für Psychiatrie und Psychotherapie, Schwerpunkt psychotische Störungen}
 
 % \newpage
 
 \subsection{Famulaturen}
-\cventry{9/2018}{Medizinische Klinik mit Schwerpunkt Hämatologie, Onkologie und Tumorimmunologie}{Campus Virchow Klinikum der Charité -- Universitätsmedizin Berlin}{}{}{Station 51B (Lymphomerkrankungen)}
-\cventry{7/2017}{Allgemeinmedizinische Praxis}{Dr. Olaf Meyer}{Wedding, Berlin}{}{}
-\cventry{10/2016 -- 06/2017}{Klinische Praktika während des Auslandsjahres in Paris}{Lehrkrankenhäuser der Université Paris Descartes}{insgesamt sieben Praktika à sechs Wochen:}{}{
+\cventry{09/2018}{Medizinische Klinik m. S. Hämatologie, Onkologie und Tumorimmunologie}{Campus Virchow Klinikum der Charité -- Universitätsmedizin Berlin}{}{}{Station 51B (Lymphomerkrankungen)}
+\cventry{07/2017}{Allgemeinmedizinische Praxis}{Dr. Olaf Meyer}{Wedding, Berlin}{}{}
+\cventry{10/2016 -- 06/2017}{Klinische Praktika während des Auslandsjahres}{Université Paris Descartes}{}{}{
 \begin{itemize}
   \item[$-$] \textbf{Hôpital Cochin:} Interdisziplinäre Notaufname
   \item[$-$] \textbf{Hôpital St. Anne:} Psychiatrie und Neurologie
   \item[$-$] \textbf{Hôpital Necker:} Hämatologie, Gynäkologie/Geburtshilfe, Infektiologie und Pädiatrie
 \end{itemize}}
+
+\newpage
+
 \cventry{04/2016}{Department of Anaesthesiology}{Queen Mary Hospital, Lehrkrankenhaus der University of Hong Kong}{Hong Kong S.A.R.}{}{}
 \cventry{03/2016}{Department of Clinical Oncology}{Prince of Wales Hospital, Lehrkrankenhaus der Chinese University of Hong Kong}{Hong Kong S.A.R.}{}{}
 \cventry{03/2015}{Klinik für Kardiologie, Angiologie und Pneumologie}{Universitätsklinikum Heidelberg}{}{}{Chest-Pain-Unit und kardiologische Ambulanz}
 
 \section{Wissenschaftliche Praktika}
 \cventry{09/2015 -- 01/2016}{Wissenschaftliche Arbeit (Modul 23)}{Labor für Strahlenbiologie, Klinik für Radioonkologie und Strahlentherapie, Charité}{Betreuung: Prof. Dr. Tinhofer-Keilholz}{}{Titel:  \emph{Molekulare und funktionelle Charakterisierung von Resistenzmechanismen im Zelllinienmodell des Kopf-Hals-Karzinoms}}
-\cventry{11/2008 - 08/2010}{„Jugend forscht“ Projekt}{Angewandte Tumorvirologie, Deutsches Krebsforschungszentrum Heidelberg}{Betreuung: Prof. Dr. R. Zawatzky}{}{Titel:  \emph{Hormesis – Erklärung durch Zusammenspiel von Adaptation und Apoptose auf zellulärer Ebene?}}
+
 
 \section{Arbeitserfahrung}
-
 \cventry{11/2014 -- 03/2021}{Studentischer Tutor}{Lernzentrum der Charité -- Universitätsmedizin Berlin}{}{}{Tutor für Problem-orientiertes Lernen (AG InterPOL)}
 \cventry{08/2011 -- 08/2012}{Internationaler Jugendfreiwilligendienst (IJFD)}{Deutsch-Schweizerische Internationale Schule}{Hong Kong S.A.R.}{China}{}
 
-\section{Preise und Auszeichnungen}
+% \section{Preise und Auszeichnungen}
+% \cvitem{08/2010}{"`Outstanding achievement for international participants"' des „China Adolescents Science Technology and Inventions Contest 2010“ in Guangzhou, China}
+% \cvitem{05/2010}{Sonderpreis des Bundeswettbewerbs „Jugend forscht“ in der Kategorie Biologie}
 
-\cvitem{05/2010}{Sonderpreis des Bundeswettbewerbs „Jugend forscht“ in der Kategorie Biologie}
-\cvitem{08/2010}{„Outstanding achievement for international participants" des „China Adolescents Science Technology and Inventions Contest 2010“ in Guangzhou, China}
 
 \section{Außercurriculäre Aktivitäten}
 \subsection{Engagement}
-\cvitem{seit 10/2020}{Engagement bei Health for Future Berlin, Leitung des Reflektionstreffens der Planetary Health Academy 2020/21}
-\cvitem{06/2018 -- 10/2019}{Mitarbeit in der AG „Neue Impulse für die Forschung an der Charité“ am 		QUEST Center des Berlin Institute of Health (BIH)}
-\cvitem{10/2015 - 07/2016}{Gründung und Leitung eines interdisziplinären studentischen Journal Clubs an der Charité}
-\cvitem{02/2014 - 07/2016}{Studentischer Vertreter in der Nachwuchs- und Forschungskommission der Charité}
-\cvitem{02/2014 - 03/2015}{Referent für Öffentlichkeitsarbeit und Sitzungsleitung der Fachschaftsinitiative Medizin der Charité}
+\cvitem{seit 10/2020}{Engagement bei Health for Future Berlin, Leitung des Reflektionstreffens der Planetary\newline{}Health Academy 2020/21}
+\cvitem{06/2018 -- 10/2019}{Mitarbeit in der AG „Neue Impulse für die Forschung an der Charité“ am QUEST Center des Berlin Institute of Health (BIH)}
+\cvitem{10/2017 -- 11/2020}{Studentischer Vertreter in Berufungs- und Habilitationskommissionen}
+\cvitem{10/2015 -- 07/2016}{Gründung und Leitung eines interdisziplinären studentischen Journal Clubs an der Charité}
+\cvitem{02/2014 -- 07/2016}{Studentischer Vertreter in der Nachwuchs- und Forschungskommission der Charité}
+\cvitem{02/2014 -- 03/2015}{Referent für Öffentlichkeitsarbeit und Sitzungsleitung der FSI Medizin der Charité}
+\subsection{Kongresse}
+\cvitem{03/2021}{6th DKTK Berlin Cancer Retreat (Abstract talk)}
+\cvitem{07/2018}{Cambridge Lymphoma Biology International Symposium (Teilnahme)}
 \subsection{Kurse und Seminare}
-\cvitem{seit 09/2017}{Regelmäßige Teilnahme an Veranstaltungen des "`Berlin Epidemiological Methods Colloquium"' (BEMC)}
+\cvitem{seit 09/2017}{Regelmäßige Teilnahme an Veranstaltungen des "`Berlin Epidemiological Methods\newline{}Colloquium"' (BEMC)}
 \cvitem{05/2018 - 06/2019}{"`Reproducible Research with R"' Kurse des QUEST Center (Basic, Advanced und Applied)}
-\cvitem{12/2017 -- 02/2018}{Statistikkurs "`Navigating Numbers"'}
+\cvitem{08/2018}{Sommerakademie der Studienstiftung, Kursthema: "`The third wave of behavioral therapy"'}
 
+% \cvitem{12/2017 -- 02/2018}{Statistikkurs "`Navigating Numbers"'}
 % \cvitem{02/2021 -- 04/2021}{Nature Masterclass „Scientific Writing"}
+% \newpage
 
 \section{Sprachkenntnisse}
 \cvitemwithcomment{Französisch}{Niveau C2}{}
 \cvitemwithcomment{Englisch}{Niveau C2}{IELTS score 8,5/9}
 % \cvitemwithcomment{Kantonesisch}{Erweiterte Grundkenntnisse}{}
+
+\newpage
 
 %\section{Computer skills}
 %\cvdoubleitem{category 1}{XXX, YYY, ZZZ}{category 4}{XXX, YYY, ZZZ}
@@ -186,85 +279,20 @@
 %\cvdoubleitem{category 3}{XXX, YYY, ZZZ}{category 6}{XXX, YYY, ZZZ}
 
 \section{Fähigkeiten}
-\cvitem[.1em]{Datenanalyse}{Statistisches Programmieren mit R} %\faRProject
+\cvitem[.1em]{Datenanalyse}{\textbf{Statistisches Programmieren mit R}} %\faRProject
   \cvlistitem{Bereinigung und Transformation von klinischen/molekularen Datensätzen}
-  \cvlistitem{Vielfältige Visualisierungen mit \texttt{ggplot2}}
+  \cvlistitem{Vielfältige Visualisierungen (z.B. mit \texttt{ggplot2})}
   \cvlistitem[.25em]{Reproduzierbare Analysen mit RMarkdown/Github}
-\cvitem[.1em]{}{Statistische Methoden}
+\cvitem[.1em]{}{\textbf{Statistische Methoden}}
   \cvlistitem{Deskriptive Statistik}
   \cvlistitem[.25em]{Analyse klinischer Daten mit Regressionsmodellen}
-\cvitem[.1em]{Molekularbiolog. Methoden}{Zelllinienmodelle\newline{} -- Genome editing (Knock-out und Knock-in) mit CRISPR/Cas9\newline{} -- funktionelle Assays}%{\cvskill{3}}
+\cvitem[.1em]{Experimentelle Methoden}{\textbf{Zelllinienmodelle}\newline{} -- Genome editing (Knock-out und Knock-in) mit CRISPR/Cas9\newline{} -- funktionelle Assays}%{\cvskill{3}}
 %  \cvlistitem{Genome editing (Knock-out und Knock-in) mit CRISPR/Cas9}
 %  \cvlistitem[.25em]{funktionelle Assays}
-\cvitem{}{Next-Generation sequencing (NGS)}%{\cvskill{2}}
+\cvitem{}{\textbf{Next-Generation sequencing (NGS)}}%{\cvskill{2}}
   \cvlistitem{AmpliconSeq}
   \cvlistitem{Targeted re-sequencing}
 %{\cvskill{2}}
-%\cvskillentry*{Datenanalyse:}{4}{R und Rmarkdown}{}{Bioinformatische Grundkenntnisse sowie vertiefte Kenntnisse zur Implementierung komplexen Analysen klinisch-molekularer Datensätze (v.a. tidyverse)}
-%\cvskillentry{}{3}{Statistische Methoden}{}{Gute Kenntnisse von deskriptiver Statistik, angewandte Grundkenntnisse von multivariaten Regressionsmodellen (z.B. Cox proportional Hazards)}
-% \cvitem{Skill matrix}{Alternatively, provide a skill matrix to show off your skills}
-%% Skill matrix as an alternative to rate one's skills, computer or other.
-
-%% Adjusts width of skill matrix columns.
-%% Usage \setcvskillcolumns[<width>][<factor>][<exp_width>]
-%% <width>, <exp_width> should be lengths smaller than \textwidth, <factor> needs to be between 0 and 1.
-%% Examples:
-% \setcvskillcolumns[5em][][]%    adjust first column. Same as \setcvskillcolumns[5em]
-% \setcvskillcolumns[][0.45][]%   adjust third (skill) column. Same as \setcvskillcolumns[][0.45]
-% \setcvskillcolumns[][][\widthof{``Year''}]%     adjust fourth (years) column.
-%\setcvskillcolumns[][0.45][\widthof{``Year''}]%
-% \setcvskillcolumns[\widthof{``Languag''}][0.48][]
-% \setcvskillcolumns[\widthof{``Languag''}]%
-
-%% Adjusts width of legend columns. Usage \setcvskilllegendcolumns[<width>][<factor>]
-%% <factor> needs to be between 0 and 1. <width> should be a length smaller than \textwidth
-%% Examples:
-% \setcvskilllegendcolumns[][0.45]
-% \setcvskilllegendcolumns[\widthof{``Legend''}][0.45]
-% \setcvskilllegendcolumns[0ex][0.46]% this is usefull for the banking style
-
-%% Add a legend if you are using \cvskill{<1-5>} command or \cvskillentry
-%% Usage \cvskilllegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
-% \cvskilllegend % insert default legend without lines
-% \cvskilllegend*[1em]{}% adjust post spacing
-% \cvskilllegend*{Legend}%  Alternatively add a description string
-%% adjust the legend entries for other languages, here German
-
-%% Alternative legend style with the first three skill levels in one column
-%% Usage \cvskillplainlegend[*][<post_padding>][<first_level>][<second_level>][<third_level>][<fourth_level>][<fifth_level>]{<name>}
-%\setcvskilllegendcolumns[][0.6]%  works for classic, casual, banking
-% \setcvskilllegendcolumns[][0.55]%  works better for oldstyle and fancy
-% \cvskillplainlegend{}
-% \cvskillplainlegend[0.2em][Grundkenntnisse][Grundkenntnisse und eigene Erfahrung in Projekten][Umfangreiche Erfahrung in Projekten][Vertiefte Expertenkenntnisse][Experte/Guru]{Legende}
-
-%% Add a head of the skill matrix table with descriptions.
-%% Usage \cvskillhead[<post_padding>][<Level>][<Skill>][<Years>][<Comment>]%
-%\cvskillhead[-0.1em]%   this inserts the standard legend in english and adjust padding
-%% Adjust head of the skill matrix for other languages
-%\cvskillhead[0.25em][Level][Fähigkeit][][Bemerkung]
-
-%% \cvskillentry[*][<post_padding>]{<skill_cathegory>}{<0-5>}{<skill_name>}{<years_of_experience>}{<comment>}%
-%% Example usages:
-%\cvskillentry*{Datenanalyse:}{4}{R und Rmarkdown}{}{Bioinformatische Grundkenntnisse sowie vertiefte Kenntnisse zur Implementierung komplexen Analysen klinisch-molekularer Datensätze (v.a. tidyverse)}
-%\cvskillentry{}{3}{Statistische Methoden}{}{Gute Kenntnisse von deskriptiver Statistik, angewandte Grundkenntnisse von multivariaten Regressionsmodellen (z.B. Cox proportional Hazards)}
-%\cvskillentry{}{2}{Lilypond}{14}{So much sheet music! Man, I'm the best!}
-%\cvskillentry{}{3}{\LaTeX}{14}{Clearly I rock at \LaTeX}
-%\cvskillentry*{OS:}{3}{Linux}{2}{I only use Archlinux btw}% notice the use of the starred command and the optional
-%\cvskillentry*[1em]{Methods}{4}{SCRUM}{8}{SCRUM master for 5 years}
-%% \cvskill{<0-5>} command
-% \cvitem{\textbackslash{cvskill}:}{Skills can be visually expressed by the \textbackslash{cvskill} command, e.g. \cvskill{2}}
-
-% legend
-%\cvskillplainlegend[0.2em][Grundkenntnisse][Angewandte Grundkenntnisse][Erfahrung in eigenen Projekten][Vertiefte Expertenkenntnisse][Experte/Spezialist]{Legende}
-
-%\cvlistitem{Item 1}
-%\cvlistitem{Item 2}
-%\cvlistitem{Item 3. This item is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
-
-%\section{Extra 2}
-%\cvlistdoubleitem{Item 1}{Item 4}
-%\cvlistdoubleitem{Item 2}{Item 5\cite{book2}}
-%\cvlistdoubleitem{Item 3}{Item 6. Like item 3 in the single column list before, this item is particularly long to wrap over several lines.}
 
 %\section{References}
 %\begin{cvcolumns}
@@ -279,10 +307,10 @@
 \renewcommand{\refname}{Publikationen}
 \nocite{*}
 \bibliographystyle{abbrv}
-\bibliography{my_publications}\bigskip
+\bibliography{my_publications}
 
 \section{Interessen und Hobbies}
-\cvitem{}{Rennrad fahren, Segeln, Lesen, klassische Konzerte und Theater}\bigskip\bigskip
+\cvitem{}{Rennrad fahren, Segeln, Lesen, klassische Konzerte und Theater}\bigskip
 
 % Publications from a BibTeX file using the multibib package
 %\section{Publications}
@@ -293,14 +321,10 @@
 %\bibliographystylemisc{plain}
 %\bibliographymisc{publications}                   % 'publications' is the name of a BibTeX file
 
-Berlin, \today\vspace*{3em}
+Berlin, \today\\[.5em]
+% \includegraphics[width=6cm]{Unterschrift.pdf}\\[.5em]
+Cornelius Hennch
 
-\textbf{Cornelius Hennch}
-
-
-\clearpage
-
-%\clearpage\end{CJK*}                              % if you are typesetting your resume in Chinese using CJK; the \clearpage is required for fancyhdr to work correctly with CJK, though it kills the page numbering by making \lastpage undefined
 \end{document}
 
 
